@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSearchTask", "Test Saerch Task\TestSearchTask.csproj", "{7EF565B5-65A7-4DED-84F3-B77AFBA22B30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSearchTask", "Test Search Task\TestSearchTask.csproj", "{7EF565B5-65A7-4DED-84F3-B77AFBA22B30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
