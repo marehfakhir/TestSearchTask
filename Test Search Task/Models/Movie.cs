@@ -28,9 +28,6 @@ namespace TestSearchTask.Models
          //public string ReleaseDate3 { get; set; }
          public DateTime NewReleaseWithinPastMonth { get; set; }
         
-
-
-        //  [Display(Name = "Category")]
           [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
           [Required]
           [StringLength(30)]
