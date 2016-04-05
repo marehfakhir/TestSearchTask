@@ -10,130 +10,113 @@ using TestSearchTask.Models;
 
 namespace Test_Search_Task.Controllers
 {
-    public class MoviesController : Controller
+    [RoutePrefix("Books")]
+    [Route("{action}")]
+    public class BooksController : Controller
     {
-        private MovieDBContext db = new MovieDBContext();
+        private BookDBContext db = new BookDBContext();
 
-        // GET: Movies
+        // GET: Books
+        [Route("~/")]           // http://localhost:xxxxx/
+        [Route]                 //http://localhost:xxxxx/Books/
+        [Route("index")]
+        [Route("bookslist")]    //http://localhost:xxxxx/Books/BooksList.
         public ActionResult Index()
         {
-            return View(db.Movies.ToList());
+            return View(db.Books.ToList());
         }
 
-        // GET: Movies/Details/5
+        // GET: Books/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
+            Book book = db.Books.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(book);
         }
 
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
-            {
-                return HttpNotFound();
-            }
-            return View(movie);
-        }
-
-        // GET: Movies/Create
+        // GET: Books/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Movies/Create
+        // POST: Books/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,ReleaseDate,Genre,Price,NewReleaseComingSoon,NewReleaseWithinPastMonth")] Movie movie)
+        public ActionResult Create([Bind(Include = "ID,Title,ReleaseDate,NewReleaseComingSoon,NewReleaseWithinPastMonth,Genre,Price")] Book book)
         {
-            //if (DateTime.Compare(movie.ReleaseDate, new DateTime()) > 0)
-            //{
-            //    ModelState.AddModelError("", "'New Release: Coming Soon' must be a future Date.");
-            //}
-            //DateTime today = DateTime.Today;
-            //if (DateTime.Now.AddDays(-30).CompareTo(movie.ReleaseDate) > 0)
-            //{
-            //    ModelState.AddModelError("", "'New Release: Last 30 Days' must be within the past 30 days.");
-            //}
             if (ModelState.IsValid)
             {
-                db.Movies.Add(movie);
+                db.Books.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(movie);
+            return View(book);
         }
 
-        // GET: Movies/Edit/5
+        // GET: Books/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
+            Book book = db.Books.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(book);
         }
 
-        // POST: Movies/Edit/5
+        // POST: Books/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,ReleaseDate,Genre,Price,NewReleaseComingSoon,NewReleaseWithinPastMonth")] Movie movie)
+        public ActionResult Edit([Bind(Include = "ID,Title,ReleaseDate,NewReleaseComingSoon,NewReleaseWithinPastMonth,Genre,Price")] Book book)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(movie).State = EntityState.Modified;
+                db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(movie);
+            return View(book);
         }
 
-        // GET: Movies/Delete/5
+        // GET: Books/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
+            Book book = db.Books.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(book);
         }
 
-        // POST: Movies/Delete/5
+        // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Movie movie = db.Movies.Find(id);
-            db.Movies.Remove(movie);
+            Book book = db.Books.Find(id);
+            db.Books.Remove(book);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
