@@ -19,7 +19,7 @@ namespace TestSearchTask.Validation
         if (value != null) 
         {
             var date = (DateTime)value;
-            if (DateTime.Compare(date, new DateTime()) > 0)
+            if (DateTime.Compare(date, DateTime.Today) < 0)
             {
                 var errorMessage = FormatErrorMessage(validationContext.DisplayName);
                 return new ValidationResult(errorMessage);

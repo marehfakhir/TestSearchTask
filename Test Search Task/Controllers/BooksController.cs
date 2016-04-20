@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -21,9 +22,22 @@ namespace Test_Search_Task.Controllers
         [Route]                 //http://localhost:xxxxx/Books/
         [Route("index")]
         [Route("bookslist")]    //http://localhost:xxxxx/Books/BooksList.
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    return View(db.Books.ToList());
+        //}
+
+        public ActionResult Index(string searchString)
         {
-            return View(db.Books.ToList());
+            var books = from b in db.Books
+                         select b;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View(books);
         }
 
         // GET: Books/Details/5
@@ -44,6 +58,14 @@ namespace Test_Search_Task.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
+            var GenreLst = new List<string>();
+            var GenreQry = from d in db.Books
+                           orderby d.Genre
+                           select d.Genre;
+
+            GenreLst.AddRange(GenreQry.Distinct());
+            ViewBag.bookGenre = new SelectList(GenreLst);
+            
             return View();
         }
 
@@ -72,6 +94,15 @@ namespace Test_Search_Task.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Book book = db.Books.Find(id);
+
+            var GenreLst = new List<string>();
+            var GenreQry = from d in db.Books
+                           orderby d.Genre
+                           select d.Genre;
+
+            GenreLst.AddRange(GenreQry.Distinct());
+            ViewBag.bookGenre = new SelectList(GenreLst);
+
             if (book == null)
             {
                 return HttpNotFound();

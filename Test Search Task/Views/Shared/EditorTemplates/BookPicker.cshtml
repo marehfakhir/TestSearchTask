@@ -1,0 +1,17 @@
+﻿@inherits System.Web.Mvc.WebViewPage<object>
+
+    <p>
+        @Html.DropDownListFor(m => m, (SelectList)ViewBag.bookGenre,"- Select -", new { @class = "form-control" })
+       
+    </p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        $(function () {
+         
+       });
+</script>
+
+}

@@ -2,6 +2,8 @@
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using TestSearchTask.Validation;
+using System.Web.Mvc;
+using System.Collections.Generic;
 
 namespace TestSearchTask.Models
 {
@@ -30,18 +32,17 @@ namespace TestSearchTask.Models
         //public string ReleaseDate3 { get; set; }
         public DateTime NewReleaseWithinPastMonth { get; set; }
 
-
-
         //  [Display(Name = "Category")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         [Required]
         [StringLength(30)]
+        [UIHint("BookPicker")]
         public string Genre { get; set; }
 
         [Range(1, 100)]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
-
+        
     }
 
     public class BookDBContext : DbContext
