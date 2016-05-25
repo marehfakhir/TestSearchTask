@@ -30,7 +30,7 @@ namespace Test_Search_Task.Controllers
         public ActionResult Index(string searchString)
         {
             var books = from b in db.Books
-                         select b;
+                        select b;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -58,14 +58,8 @@ namespace Test_Search_Task.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
-            var GenreLst = new List<string>();
-            var GenreQry = from d in db.Books
-                           orderby d.Genre
-                           select d.Genre;
-
-            GenreLst.AddRange(GenreQry.Distinct());
-            ViewBag.bookGenre = new SelectList(GenreLst);
-            
+            RetrieveGenreList();
+        
             return View();
         }
 
@@ -95,13 +89,7 @@ namespace Test_Search_Task.Controllers
             }
             Book book = db.Books.Find(id);
 
-            var GenreLst = new List<string>();
-            var GenreQry = from d in db.Books
-                           orderby d.Genre
-                           select d.Genre;
-
-            GenreLst.AddRange(GenreQry.Distinct());
-            ViewBag.bookGenre = new SelectList(GenreLst);
+            RetrieveGenreList();
 
             if (book == null)
             {
@@ -124,6 +112,19 @@ namespace Test_Search_Task.Controllers
                 return RedirectToAction("Index");
             }
             return View(book);
+        }
+
+        // returns list of book genres from the db. its being used by the BookPicker
+        private List<string> RetrieveGenreList()
+        {
+            var GenreLst = new List<string>();                                     
+            var GenreQry = from d in db.Books
+                           orderby d.Genre
+                           select d.Genre;
+
+            GenreLst.AddRange(GenreQry.Distinct());
+            ViewBag.bookGenre = new SelectList(GenreLst);
+            return GenreLst; 
         }
 
         // GET: Books/Delete/5
