@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ReleaseDate, new { @Value = @DateTime.Now.ToShortDateString(), htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -80,12 +80,27 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script>
         $(function () {
-            
-            //$("#Price").change(function () {
+            $("#ReleaseDate").change(function () {
+
+                alert(today.setHours(0,0,0,0));
+                if ($(this).setHours(0,0,0,0) == today.setHours(0, 0, 0, 0)) {
+                  
+                    var today = new Date();
+                    $("#NewReleaseComingSoon").prop('disabled', true);
+                    $("#NewReleaseWithinPastMonth").prop('disabled', true);
+                }
+                debugger;
+                 
+                
+                //$("#NewReleaseComingSoon").change(function () {
+                  
+
+                //})
+
             //    $(this).animate({ height: '+=25', width: '+=25' })
             //           .animate({ height: '-=25', width: '-=25' });
             //    alert("hi");
-            //});
+            });
         })
     </script>
 }

@@ -4,10 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using TestSearchTask.Validation;
 using System.Web.Mvc;
 using System.Collections.Generic;
+using System.ComponentModel;
+using Test_Search_Task.Models;
 
 namespace TestSearchTask.Models
 {
-    public class Book
+    public class Book : BaseViewModel
     {
         public int ID { get; set; }
 
@@ -15,17 +17,18 @@ namespace TestSearchTask.Models
         public string Title { get; set; }
 
         [Display(Name = "Release Date")]
-        [DataType(DataType.Date)]
-        // [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
+        [DefaultValue("12/31/9999")]
         [Display(Name = "New Release: Coming Soon")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [CheckFutureDate]
         public DateTime NewReleaseComingSoon { get; set; }
 
+        [DefaultValue("05/31/2016")]
         [Display(Name = "New Release: Last 30 Days")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime NewReleaseWithinPastMonth { get; set; }
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
@@ -34,8 +37,11 @@ namespace TestSearchTask.Models
         [UIHint("BookPicker")]
         public string Genre { get; set; }
 
+        public IEnumerable<string> GenreList;
+
         [Range(1, 100)]
         [DataType(DataType.Currency)]
+        [DefaultValue(5)]
         public decimal Price { get; set; }
         
     }

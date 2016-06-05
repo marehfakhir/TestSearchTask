@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Test_Search_Task.Models;
 using TestSearchTask.Models;
 
 namespace Test_Search_Task.Controllers
@@ -58,9 +59,10 @@ namespace Test_Search_Task.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
+
             RetrieveGenreList();
-        
-            return View();
+
+            return View(new Book());
         }
 
         // POST: Books/Create
@@ -70,14 +72,33 @@ namespace Test_Search_Task.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Title,ReleaseDate,NewReleaseComingSoon,NewReleaseWithinPastMonth,Genre,Price")] Book book)
         {
-            if (ModelState.IsValid)
+            // Validating Date type fields - start
+            bool ValidationResults = true;
+            if (book.ReleaseDate != DateTime.Today)
+            {
+                ModelState.AddModelError("", "'Release Date' must be today date.");
+                ValidationResults = false;
+            }
+
+            DateTime thirtyDaysAgo = DateTime.Today.AddDays(-30);
+            if (book.NewReleaseWithinPastMonth < thirtyDaysAgo || book.NewReleaseWithinPastMonth > DateTime.Today)
+            {
+                ModelState.AddModelError("", "'New Release: Last 30 Days' must be within the past 30 days.");
+                ValidationResults = false;
+            }
+            // Validating Date type fields - end
+
+            if (ModelState.IsValid && ValidationResults)
             {
                 db.Books.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(book);
+            else
+            {
+                book.GenreList = RetrieveGenreList();
+                return View(book);
+            }
         }
 
         // GET: Books/Edit/5
@@ -87,9 +108,11 @@ namespace Test_Search_Task.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Books.Find(id);
 
-            RetrieveGenreList();
+            Book book = db.Books.Find(id);
+            book.GenreList = RetrieveGenreList();
+            ViewBag.bookGenre = new SelectList(book.GenreList, book.Genre);
+
 
             if (book == null)
             {
@@ -114,17 +137,30 @@ namespace Test_Search_Task.Controllers
             return View(book);
         }
 
-        // returns list of book genres from the db. its being used by the BookPicker
-        private List<string> RetrieveGenreList()
+        // returns list of book's genres from the db. its being used by the BookPicker
+        //private List<string> RetrieveGenreList()
+        //{
+        //    var GenreLst = new List<string>();                                     
+        //    var GenreQry = from d in db.Books
+        //                   orderby d.Genre
+        //                   select d.Genre;
+
+        //    GenreLst.AddRange(GenreQry.Distinct());
+        //    ViewBag.bookGenre = new SelectList(GenreLst);
+        //    return GenreLst; 
+        //}
+
+
+        private IEnumerable<string> RetrieveGenreList()
         {
-            var GenreLst = new List<string>();                                     
+            var GenreLst = new List<string>();
             var GenreQry = from d in db.Books
                            orderby d.Genre
                            select d.Genre;
 
             GenreLst.AddRange(GenreQry.Distinct());
             ViewBag.bookGenre = new SelectList(GenreLst);
-            return GenreLst; 
+            return GenreLst;
         }
 
         // GET: Books/Delete/5
