@@ -80,26 +80,16 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script>
         $(function () {
-            $("#ReleaseDate").change(function () {
 
-                alert(today.setHours(0,0,0,0));
-                if ($(this).setHours(0,0,0,0) == today.setHours(0, 0, 0, 0)) {
-                  
-                    var today = new Date();
+            // disable NewReleaseComingSoon & NewReleaseWithinPastMonth when the correct value for RelaseDate is being inserted 
+            $("#ReleaseDate").change(function () {
+                var today = new Date();
+                var today2 = new Date($("#ReleaseDate").val());
+
+                if ((today).setHours(0, 0, 0, 0) == today2.setHours(0, 0, 0, 0)) {
                     $("#NewReleaseComingSoon").prop('disabled', true);
                     $("#NewReleaseWithinPastMonth").prop('disabled', true);
                 }
-                debugger;
-                 
-                
-                //$("#NewReleaseComingSoon").change(function () {
-                  
-
-                //})
-
-            //    $(this).animate({ height: '+=25', width: '+=25' })
-            //           .animate({ height: '-=25', width: '-=25' });
-            //    alert("hi");
             });
         })
     </script>
