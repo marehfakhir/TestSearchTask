@@ -17,16 +17,16 @@ namespace TestSearchTask.Models
         public DateTime ReleaseDate { get; set; }
 
          [Display(Name = "New Release: Coming Soon")]
-         [DataType(DataType.Date)]
+       //  [DataType(DataType.Date)]
          //// [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
          ////public string ReleaseDate2 { get; set; }
-         public DateTime NewReleaseComingSoon { get; set; }
+         public DateTime? NewReleaseComingSoon { get; set; }
 
          [Display(Name = "New Release: Last 30 Days")]
-          [DataType(DataType.Date)]
+       //   [DataType(DataType.Date)]
          //// [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
          //public string ReleaseDate3 { get; set; }
-         public DateTime NewReleaseWithinPastMonth { get; set; }
+         public DateTime? NewReleaseWithinPastMonth { get; set; }
         
 
 
