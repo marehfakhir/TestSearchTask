@@ -226,9 +226,7 @@ D:\Thesis Related Items\TestSearchTask\Test Search Task\bin\Microsoft.Owin.Secur
 D:\Thesis Related Items\TestSearchTask\Test Search Task\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Thesis Related Items\TestSearchTask\Test Search Task\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Thesis Related Items\TestSearchTask\Test Search Task\obj\Debug\TestSearchTask.csprojResolveAssemblyReference.cache
-D:\Thesis Related Items\TestSearchTask\Test Search Task\obj\Debug\Test_Search_Task.Migrations.InitialCreate.resources
-D:\Thesis Related Items\TestSearchTask\Test Search Task\obj\Debug\Test_Search_Task.Migrations.DataAnnotations.resources
-D:\Thesis Related Items\TestSearchTask\Test Search Task\obj\Debug\Test_Search_Task.Migrations.Initial.resources
-D:\Thesis Related Items\TestSearchTask\Test Search Task\obj\Debug\TestSearchTask.csproj.GenerateResource.Cache
 D:\Thesis Related Items\TestSearchTask\Test Search Task\obj\Debug\Test Search Task.dll
 D:\Thesis Related Items\TestSearchTask\Test Search Task\obj\Debug\Test Search Task.pdb
+D:\Thesis Related Items\TestSearchTask\Test Search Task\obj\Debug\Test_Search_Task.Migrations.test.resources
+D:\Thesis Related Items\TestSearchTask\Test Search Task\obj\Debug\TestSearchTask.csproj.GenerateResource.Cache

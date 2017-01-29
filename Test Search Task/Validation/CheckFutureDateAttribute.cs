@@ -16,7 +16,7 @@ namespace TestSearchTask.Validation
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (value != null)
+            if (value != null && (DateTime)value != DateTime.MinValue)
             {
                 var date = (DateTime)value;
                 int result = DateTime.Compare(date, DateTime.Today);

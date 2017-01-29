@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Test_Search_Task.Models;
+using Test_Search_Task.Validation;
 
 namespace TestSearchTask.Models
 {
@@ -18,18 +19,19 @@ namespace TestSearchTask.Models
 
         [Display(Name = "Release Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
 
-        [DefaultValue("12/31/9999")]
+      //  [DefaultValue("12/31/9999")]
         [Display(Name = "New Release: Coming Soon")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [CheckFutureDate]
-        public DateTime NewReleaseComingSoon { get; set; }
+        public DateTime? NewReleaseComingSoon { get; set; }
 
-        [DefaultValue("05/31/2016")]
+      //  [DefaultValue("01/14/2017")]
         [Display(Name = "New Release: Last 30 Days")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime NewReleaseWithinPastMonth { get; set; }
+        [CheckPastDate]
+        public DateTime? NewReleaseWithinPastMonth { get; set; }
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         [Required]

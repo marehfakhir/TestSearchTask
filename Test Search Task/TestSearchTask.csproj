@@ -167,28 +167,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603140309278_InitialCreate.cs" />
-    <Compile Include="Migrations\201603140309278_InitialCreate.Designer.cs">
-      <DependentUpon>201603140309278_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603150223385_DataAnnotations.cs" />
-    <Compile Include="Migrations\201603150223385_DataAnnotations.Designer.cs">
-      <DependentUpon>201603150223385_DataAnnotations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603310242491_Initial.cs" />
-    <Compile Include="Migrations\201603310242491_Initial.Designer.cs">
-      <DependentUpon>201603310242491_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201701230256012_test.cs" />
+    <Compile Include="Migrations\201701230256012_test.Designer.cs">
+      <DependentUpon>201701230256012_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Validation\CheckFutureDateAttribute.cs" />
+    <Compile Include="Validation\CheckPastDateAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -212,6 +206,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\SharedEdits.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -277,14 +272,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603140309278_InitialCreate.resx">
-      <DependentUpon>201603140309278_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603150223385_DataAnnotations.resx">
-      <DependentUpon>201603150223385_DataAnnotations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603310242491_Initial.resx">
-      <DependentUpon>201603310242491_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701230256012_test.resx">
+      <DependentUpon>201701230256012_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

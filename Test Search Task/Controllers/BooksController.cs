@@ -73,22 +73,23 @@ namespace Test_Search_Task.Controllers
         public ActionResult Create([Bind(Include = "ID,Title,ReleaseDate,NewReleaseComingSoon,NewReleaseWithinPastMonth,Genre,Price")] Book book)
         {
             // Validating Date type fields - start
-            bool ValidationResults = true;
-            if (book.ReleaseDate != DateTime.Today)
-            {
-                ModelState.AddModelError("", "'Release Date' must be today date.");
-                ValidationResults = false;
-            }
+            //bool ValidationResults = true;
+            //if (book.ReleaseDate != DateTime.Today)
+            //{
+            //    ModelState.AddModelError("", "'Release Date' must be today date.");
+            //    ValidationResults = false;
+            //}
 
-            DateTime thirtyDaysAgo = DateTime.Today.AddDays(-30);
-            if (book.NewReleaseWithinPastMonth < thirtyDaysAgo || book.NewReleaseWithinPastMonth > DateTime.Today)
-            {
-                ModelState.AddModelError("", "'New Release: Last 30 Days' must be within the past 30 days.");
-                ValidationResults = false;
-            }
+            //DateTime thirtyDaysAgo = DateTime.Today.AddDays(-30);
+            //if (book.NewReleaseWithinPastMonth < thirtyDaysAgo || book.NewReleaseWithinPastMonth > DateTime.Today)
+            //{
+            //    ModelState.AddModelError("", "'New Release: Last 30 Days' must be within the past 30 days.");
+            //    ValidationResults = false;
+            //}
             // Validating Date type fields - end
 
-            if (ModelState.IsValid && ValidationResults)
+            //if (ModelState.IsValid && ValidationResults)
+            if (ModelState.IsValid)
             {
                 db.Books.Add(book);
                 db.SaveChanges();
